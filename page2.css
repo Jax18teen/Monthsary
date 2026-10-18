@@ -1,0 +1,726 @@
+/* ========================================
+   OUR LITTLE UNIVERSE - PAGE 2
+   Photo Focus Memories
+======================================== */
+
+:root {
+    --night: #080d27;
+    --gold: #f6d995;
+    --soft-white: #fffaf5;
+    --pink: #f4c9dc;
+    --text: #f8f2ff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100%;
+    background: #080d27;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+
+    color: #f8f2ff;
+    font-family: "Poppins", sans-serif;
+
+    background: transparent;
+}
+
+/* Same background as Page 1 */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -20px;
+    z-index: -3;
+
+    background-image: url("assets/couple-scene.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    transform: scale(1.02);
+    transition: filter 0.55s ease,
+                transform 0.55s ease;
+}
+
+body.has-focus::before {
+    filter: blur(8px) brightness(0.48);
+    transform: scale(1.07);
+}
+
+.background-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 9, 30, 0.48),
+            rgba(8, 13, 39, 0.72)
+        );
+}
+
+body.has-focus .background-overlay {
+    background: rgba(3, 5, 20, 0.48);
+}
+
+/* ========================================
+   FLOATING FLOWER PETALS 🌸
+   Same effect as Page 1
+======================================== */
+
+.petals {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    top: -30px;
+    width: 10px;
+    height: 17px;
+
+    background: linear-gradient(
+        135deg,
+        #fff0f5,
+        #f4a7c7
+    );
+
+    border-radius: 85% 15% 75% 25%;
+
+    animation:
+        petalFall
+        var(--duration)
+        linear
+        var(--delay)
+        infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes petalFall {
+    0% {
+        transform: translate(0, -30px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: translate(var(--drift), 50vh) rotate(220deg);
+    }
+
+    100% {
+        transform:
+            translate(calc(var(--drift) * -0.4), 110vh)
+            rotate(500deg);
+        opacity: 0.15;
+    }
+}
+
+/* Gallery remains above the petals */
+.page-header,
+.memory-section,
+.page-footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* Focus mode stacking fix:
+   Keep the selected photo above the dark backdrop */
+body.has-focus .memory-section {
+    z-index: 20;
+}
+
+.focus-backdrop {
+    z-index: 10;
+}
+
+.memory-detail {
+    z-index: 30;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .petal {
+        animation: none;
+        display: none;
+    }
+}
+
+/* Keep the gallery above the petals */
+
+.page-header,
+.memory-section,
+.memory-detail,
+.page-footer {
+    position: relative;
+    z-index: 1;
+}
+
+.focus-backdrop {
+    z-index: 10;
+}
+
+.memory-detail {
+    z-index: 30;
+}
+
+/* Respect reduced-motion settings */
+
+@media (prefers-reduced-motion: reduce) {
+    .petals span {
+        animation: none;
+        opacity: 0.45;
+        top: auto;
+    }
+
+    .petals span:nth-child(1) { top: 15%; }
+    .petals span:nth-child(2) { top: 28%; }
+    .petals span:nth-child(3) { top: 40%; }
+    .petals span:nth-child(4) { top: 55%; }
+    .petals span:nth-child(5) { top: 70%; }
+    .petals span:nth-child(6) { top: 82%; }
+}
+
+/* Header */
+
+.page-header {
+    width: min(100% - 32px, 1000px);
+    margin: 0 auto;
+    padding: 24px 0 12px;
+    text-align: center;
+
+    transition: opacity 0.35s ease,
+                filter 0.35s ease;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--soft-white);
+    text-decoration: none;
+    font-size: 13px;
+
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.08);
+
+    transition: background 0.25s ease,
+                transform 0.25s ease;
+}
+
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-2px);
+}
+
+.moon {
+    margin: 20px auto 4px;
+    color: var(--gold);
+    font-size: 43px;
+    line-height: 1.2;
+    text-shadow: 0 0 24px rgba(246, 217, 149, 0.65);
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin: 12px 0;
+}
+
+.page-header h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(30px, 5vw, 49px);
+    line-height: 1.2;
+    font-weight: 500;
+
+    color: #fff7fd;
+    text-shadow: 0 2px 20px rgba(244, 201, 220, 0.2);
+}
+
+.subtitle {
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255, 250, 255, 0.82);
+}
+
+/* Memory gallery */
+
+.memory-section {
+    width: min(100% - 32px, 920px);
+    margin: 20px auto 0;
+
+    transition: opacity 0.35s ease,
+                filter 0.35s ease;
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 35px 26px;
+    align-items: start;
+}
+
+/* Polaroid card */
+
+.memory-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-width: 0;
+
+    display: block;
+    border: 0;
+    padding: 11px 11px 15px;
+
+    color: #28223a;
+    background: #3908cbb6;
+
+    font-family: "Playfair Display", serif;
+    text-align: center;
+    cursor: pointer;
+
+    box-shadow: 0 9px 25px rgba(0, 0, 0, 0.28);
+
+    transform: rotate(-2deg);
+    transition:
+        transform 0.45s ease,
+        opacity 0.4s ease,
+        filter 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.memory-card:nth-child(2) {
+    transform: rotate(2.2deg);
+}
+
+.memory-card:nth-child(3) {
+    transform: rotate(-1deg);
+}
+
+.memory-card:nth-child(4) {
+    transform: rotate(1.8deg);
+}
+
+.memory-card:nth-child(5) {
+    transform: rotate(-2.4deg);
+}
+
+.memory-card:nth-child(6) {
+    transform: rotate(1deg);
+}
+
+.memory-card:hover {
+    transform: translateY(-5px) rotate(0deg);
+    box-shadow: 0 15px 32px rgba(0, 0, 0, 0.36);
+}
+
+.photo-frame {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 4 / 4.5;
+    background: #ffffff;
+}
+
+.photo-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: transform 0.45s ease;
+}
+
+.memory-card:hover .photo-frame img {
+    transform: scale(1.04);
+}
+
+.photo-number {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+
+    padding: 4px 7px;
+    border-radius: 12px;
+
+    color: white;
+    background: rgba(8, 13, 39, 0.65);
+
+    font-family: "Poppins", sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.photo-caption {
+    display: block;
+    padding: 14px 2px 0;
+
+    color: #F6D995;
+    font-size: clamp(11px, 1.5vw, 15px);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Focus mode: soften everything except selected card */
+
+body.has-focus .page-header,
+body.has-focus .memory-grid .memory-card:not(.active),
+body.has-focus .tap-hint,
+body.has-focus .page-footer {
+    filter: blur(4px);
+    opacity: 0.28;
+    pointer-events: none;
+}
+
+body.has-focus .memory-grid .memory-card.active {
+    z-index: 20;
+    opacity: 1;
+    filter: none;
+    pointer-events: auto;
+
+    transform: translateY(-5px) rotate(0deg) scale(1.04);
+
+    box-shadow:
+        0 0 0 2px rgba(246, 217, 149, 0.85),
+        0 0 35px rgba(246, 217, 149, 0.22),
+        0 22px 55px rgba(0, 0, 0, 0.55);
+}
+
+.memory-card:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 5px;
+}
+
+/* Hint */
+
+.tap-hint {
+    text-align: center;
+    margin: 36px 0 20px;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    line-height: 1.8;
+    color: rgba(255, 245, 255, 0.8);
+
+    transition: opacity 0.35s ease,
+                filter 0.35s ease;
+}
+
+/* Backdrop */
+
+.focus-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+
+    background: rgba(3, 5, 20, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.4s ease,
+                visibility 0.4s ease;
+}
+
+body.has-focus .focus-backdrop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Caption panel under the selected photo */
+
+.memory-detail {
+    position: relative;
+    z-index: 30;
+
+    width: min(92%, 470px);
+    margin: 30px auto 25px;
+    padding: 28px 24px 24px;
+
+    text-align: center;
+    color: var(--soft-white);
+
+    border: 1px solid rgba(246, 217, 149, 0.4);
+    border-radius: 20px;
+
+    background: rgba(12, 17, 48, 0.94);
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(246, 217, 149, 0.08);
+
+    animation: revealCaption 0.45s ease both;
+}
+
+.memory-detail[hidden] {
+    display: none;
+}
+
+@keyframes revealCaption {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 13px;
+
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+
+    transition: background 0.25s ease,
+                transform 0.25s ease;
+}
+
+.close-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+.detail-label {
+    margin: 6px 0 12px;
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 3px;
+    line-height: 1.8;
+}
+
+.memory-detail h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(23px, 4vw, 31px);
+    font-weight: 500;
+    line-height: 1.4;
+    color: #fff4fa;
+}
+
+.detail-message {
+    max-width: 360px;
+    margin: 14px auto 0;
+
+    color: rgba(255, 250, 255, 0.88);
+    font-size: 13px;
+    line-height: 2;
+    overflow-wrap: anywhere;
+}
+
+.detail-heart {
+    display: inline-block;
+    margin-top: 16px;
+
+    color: var(--pink);
+    font-size: 20px;
+    animation: heartBeat 1.4s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Footer */
+
+.page-footer {
+    padding: 15px 16px 30px;
+    text-align: center;
+    color: rgba(255, 250, 255, 0.82);
+    font-family: "Playfair Display", serif;
+    font-size: 14px;
+    line-height: 1.8;
+
+    transition: opacity 0.35s ease,
+                filter 0.35s ease;
+}
+
+.footer-date {
+    margin-top: 5px;
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* Tablet */
+
+@media (max-width: 700px) {
+    .memory-grid {
+        gap: 25px 17px;
+    }
+
+    .memory-card {
+        padding: 8px 8px 12px;
+    }
+
+    .photo-caption {
+        padding-top: 10px;
+    }
+
+    .page-header {
+        padding-top: 20px;
+    }
+
+    .memory-section {
+        margin-top: 20px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+    .page-header {
+        width: calc(100% - 28px);
+    }
+
+    .back-link {
+        font-size: 11px;
+        padding: 9px 12px;
+    }
+
+    .moon {
+        margin-top: 16px;
+        font-size: 36px;
+    }
+
+    .eyebrow {
+        font-size: 8px;
+        letter-spacing: 2.5px;
+    }
+
+    .subtitle {
+        max-width: 300px;
+        margin: 10px auto 0;
+        font-size: 11px;
+    }
+
+    .memory-section {
+        width: calc(100% - 28px);
+    }
+
+    .memory-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px 16px;
+    }
+
+    .memory-card {
+        padding: 7px 7px 11px;
+    }
+
+    .photo-frame {
+        aspect-ratio: 4 / 4.7;
+    }
+
+    .photo-caption {
+        font-size: 11px;
+        padding-top: 10px;
+    }
+
+    body.has-focus .memory-grid .memory-card.active {
+        transform: translateY(-3px) scale(1.02);
+    }
+
+    .memory-detail {
+        width: calc(100% - 32px);
+        padding: 26px 18px 22px;
+        margin-top: 24px;
+    }
+
+    .detail-message {
+        font-size: 12px;
+    }
+
+    .tap-hint {
+        font-size: 10px;
+        margin-top: 28px;
+    }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+.photo-number {
+    display: none;
+}
+
+/* Page 2 — Continue to final surprise */
+
+.continue-section {
+    padding: 30px 18px 45px;
+    text-align: center;
+}
+
+.continue-section p {
+    color: #c5c9e3;
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+.continue-button {
+    display: inline-block;
+    max-width: 100%;
+    padding: 14px 22px;
+    border: 1px solid rgba(221, 208, 255, 0.3);
+    border-radius: 30px;
+    color: #24142e;
+    background: linear-gradient(110deg, #ffd3e4, #d9c6ff);
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.83rem;
+    font-weight: 600;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}

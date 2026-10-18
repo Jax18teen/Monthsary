@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#080d27">
+
+    <title>Our Little Universe 🌙 | Photo Memories</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="page2.css">
+    <script src="page2.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-overlay" aria-hidden="true"></div>
+
+   <!-- Floating flower petals 🌸 -->
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="page-header">
+        <a href="index.html" class="back-link">
+            <span aria-hidden="true">←</span>
+            Back to Our Universe
+        </a>
+
+        <div class="moon" aria-hidden="true">☾</div>
+
+        <p class="eyebrow">A LITTLE COLLECTION OF US</p>
+
+        <h1>Our Photo Memories</h1>
+
+        <p class="subtitle">
+            Every picture holds a little piece of my heart. 💗
+        </p>
+    </header>
+
+    <!-- Main memory section -->
+    <main class="memory-section">
+
+        <div class="memory-grid">
+
+            <!-- Memory 1 -->
+            <button class="memory-card"
+                    type="button"
+                    data-memory="0"
+                    aria-label="Open our first memory">
+
+                <span class="photo-frame">
+                    <img src="assets/memory1.jpg"
+                         alt="Our first memory"
+                         loading="eager">
+
+                    <span class="photo-number">01</span>
+                </span>
+
+                <span class="photo-caption">
+                    Our first Meet♡
+                </span>
+            </button>
+
+            <!-- Memory 2 -->
+            <button class="memory-card"
+                    type="button"
+                    data-memory="1"
+                    aria-label="Open our second memory">
+
+                <span class="photo-frame">
+                    <img src="assets/memory2.jpg"
+                         alt="A beautiful moment together"
+                         loading="lazy">
+
+                    <span class="photo-number">02</span>
+                </span>
+
+                <span class="photo-caption">
+                    My First Guitar String Ring✨
+                </span>
+            </button>
+
+            <!-- Memory 3 -->
+            <button class="memory-card"
+                    type="button"
+                    data-memory="2"
+                    aria-label="Open our third memory">
+
+                <span class="photo-frame">
+                    <img src="assets/memory3.jpg"
+                         alt="A happy memory together"
+                         loading="lazy">
+
+                    <span class="photo-number">03</span>
+                </span>
+
+                <span class="photo-caption">
+                    Your smile, my happiness 🌷
+                </span>
+            </button>
+
+            <!-- Memory 4 -->
+            <button class="memory-card"
+                    type="button"
+                    data-memory="3"
+                    aria-label="Open our fourth memory">
+
+                <span class="photo-frame">
+                    <img src="assets/memory4.jpg"
+                         alt="One of our special moments"
+                         loading="lazy">
+
+                    <span class="photo-number">04</span>
+                </span>
+
+                <span class="photo-caption">
+                    Just you and me 💕
+                </span>
+            </button>
+
+            <!-- Memory 5 -->
+            <button class="memory-card"
+                    type="button"
+                    data-memory="4"
+                    aria-label="Open our fifth memory">
+
+                <span class="photo-frame">
+                    <img src="assets/memory5.jpg"
+                         alt="A memory close to our hearts"
+                         loading="lazy">
+
+                    <span class="photo-number">05</span>
+                </span>
+
+                <span class="photo-caption">
+                    My favorite nickname from you🌙
+                </span>
+            </button>
+
+            <!-- Memory 6 -->
+            <button class="memory-card"
+                    type="button"
+                    data-memory="5"
+                    aria-label="Open our sixth memory">
+
+                <span class="photo-frame">
+                    <img src="assets/memory6.jpg"
+                         alt="Another beautiful memory together"
+                         loading="lazy">
+
+                    <span class="photo-number">06</span>
+                </span>
+
+                <span class="photo-caption">
+                    More memories to come ♾️
+                </span>
+            </button>
+
+        </div>
+
+        <p class="tap-hint" id="tapHint">
+            ✨ Tap a photo to relive that little moment ✨
+        </p>
+
+    </main>
+
+    <!-- Focus backdrop -->
+    <div class="focus-backdrop"
+         id="focusBackdrop"
+         aria-hidden="true"></div>
+
+    <!-- Selected memory caption -->
+    <section class="memory-detail"
+             id="memoryDetail"
+             aria-live="polite"
+             aria-atomic="true"
+             hidden>
+
+        <button class="close-button"
+                id="closeMemory"
+                type="button"
+                aria-label="Close selected memory">
+            ×
+        </button>
+
+        <p class="detail-label">A LITTLE PIECE OF FOREVER</p>
+
+        <h2 id="detailTitle">Our Special Memory ♡</h2>
+
+        <p class="detail-message" id="detailMessage"></p>
+
+        <span class="detail-heart" aria-hidden="true">♥</span>
+
+    </section>
+
+    <!-- Continue to Page 3 -->
+<section class="continue-section">
+    <p>Our memories are only the beginning... ♡</p>
+
+    <a href="page3.html" class="continue-button">
+        Discover Your Final Surprise 💌 →
+    </a>
+</section>
+
+    <footer class="page-footer">
+        <p>Made with love, just for you. ♡</p>
+        <p class="footer-date">Our Little Universe · Forever & Always</p>
+    </footer>
+
+</body>
+</html>

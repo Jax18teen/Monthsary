@@ -1,0 +1,400 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.scene {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5%;
+  overflow: hidden;
+  isolation: isolate;
+  color: white;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 65, 105, 0.38),
+      rgba(0, 80, 120, 0.04)
+    ),
+    url("assets/couple-scene.png");
+
+  background-size: cover;
+  background-position: center;
+  animation: sceneMove 22s ease-in-out infinite alternate;
+}
+
+@keyframes sceneMove {
+  from {
+    background-position: 50% 50%;
+    transform: scale(1);
+  }
+
+  to {
+    background-position: 53% 48%;
+    transform: scale(1.035);
+  }
+}
+
+/* Welcome glass card */
+.welcome-card {
+  position: relative;
+  z-index: 3;
+  width: min(450px, 100%);
+  padding: 38px 30px;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 25px;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  box-shadow: 0 15px 45px rgba(0, 45, 75, 0.2);
+
+  animation: cardAppear 1.2s ease both;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease,
+    background 0.8s ease;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pretitle {
+  font-family: Georgia, serif;
+  font-size: 25px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: clamp(45px, 6vw, 68px);
+  line-height: 1.05;
+  text-shadow: 0 3px 15px rgba(0, 45, 75, 0.3);
+}
+
+.tagline {
+  margin-top: 18px;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.divider {
+  margin: 22px 0;
+  color: #ffe7b0;
+}
+
+.message {
+  font-size: 13px;
+  line-height: 1.9;
+  margin-bottom: 23px;
+}
+
+/* Password input */
+#loginForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px 5px 17px;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.15);
+
+  transition: opacity 0.4s ease;
+}
+
+#password {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 0;
+
+  color: white;
+  font-size: 14px;
+
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+#password::placeholder {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+#loginForm button {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+
+  transition: transform 0.25s, background 0.25s;
+}
+
+#loginForm button:hover {
+  transform: translateX(3px);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+#loginForm button:focus-visible,
+.music-button:focus-visible {
+  outline: 2px solid #ffe7b0;
+  outline-offset: 4px;
+}
+
+#errorMessage {
+  min-height: 17px;
+  margin-top: 9px;
+  font-size: 12px;
+}
+
+.special-date {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.made-for {
+  margin-top: 18px;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+}
+
+/* Music button */
+.music-button {
+  position: absolute;
+  z-index: 5;
+  left: 20px;
+  bottom: 20px;
+
+  padding: 10px 16px;
+  color: white;
+  background: rgba(0, 70, 110, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
+
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* Falling flower petals */
+.petals {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -30px;
+  width: 10px;
+  height: 17px;
+
+  background: linear-gradient(135deg, #fff0f5, #f4a7c7);
+  border-radius: 85% 15% 75% 25%;
+
+  animation: petalFall var(--duration) linear var(--delay) infinite;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate(0, -30px) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translate(var(--drift), 50vh) rotate(220deg);
+  }
+
+  100% {
+    transform: translate(calc(var(--drift) * -0.4), 110vh)
+      rotate(500deg);
+    opacity: 0.15;
+  }
+}
+
+/* =====================================
+   PASSWORD SUCCESS ANIMATION 💗
+===================================== */
+
+.success-message {
+  display: none;
+  opacity: 0;
+  margin-top: 22px;
+  line-height: 1.8;
+}
+
+.success-heart {
+  display: block;
+  color: #ffe7b0;
+  font-size: 55px;
+  animation: heartBeat 1s ease-in-out infinite;
+}
+
+.success-message p {
+  font-family: Georgia, serif;
+  font-size: 21px;
+  margin-top: 8px;
+}
+
+.success-message small {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* Hide the login and welcome text softly */
+.welcome-card.success {
+  background: rgba(255, 255, 255, 0.22);
+  animation: successCard 1s ease both;
+}
+
+.welcome-card.success > :not(.success-message) {
+  animation: fadeAway 0.65s ease forwards;
+}
+
+.welcome-card.success .success-message {
+  display: block;
+  animation: messageAppear 0.9s 0.35s ease forwards;
+}
+
+.welcome-card.success #loginForm {
+  pointer-events: none;
+}
+
+@keyframes successCard {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 0 45px rgba(255, 231, 176, 0.45);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 15px 45px rgba(0, 45, 75, 0.2);
+  }
+}
+
+@keyframes fadeAway {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.16);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 700px) {
+  .scene {
+    justify-content: center;
+    padding: 20px 16px 75px;
+    background-position: 58% center;
+  }
+
+  .welcome-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 28px 22px;
+    background: rgba(15, 100, 145, 0.35);
+  }
+
+  h1 {
+    font-size: clamp(48px, 13vw, 65px);
+  }
+
+  .pretitle {
+    font-size: 26px;
+  }
+
+  .tagline {
+    font-size: 11px;
+  }
+
+  .message {
+    font-size: 12px;
+  }
+
+  .music-button {
+    left: 50%;
+    bottom: 13px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .success-message p {
+    font-size: 19px;
+  }
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
